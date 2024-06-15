@@ -1,33 +1,34 @@
 #include <iostream>
 #include <ftxui/screen/screen.hpp>
+#include <ftxui/dom/elements.hpp>
 #include <thread>
+#include <chrono>
+
 
 using namespace std;
 using namespace ftxui;
 
 int main(int argc, char const *argv[])
 {
-    Screen pantalla = Screen::Create(
-        Dimension::Full(),
-        Dimension::Full()
-    );
-
-    int x=0;
+    int x = 0;
     while (true)
     {
         x++;
-        pantalla.Clear();
-        this_thread::sleep_for(.1s);
+        Element dibujo = vbox(
+            {
+                text("            / . . |") | move_to(x, 5),
+                text("            |  ---< ") | move_to(x, 6),
+                text("             |  / ") | move_to(x, 7),
+                text("   __________/ / ") | move_to(x, 8),
+                text("-=:___________/ ") | move_to(x, 9),
+            });
 
-        pantalla.PixelAt(x,5).character="            / . . |";
-        pantalla.PixelAt(x,6).character="            |  ---< ";
-        pantalla.PixelAt(x,7).character="             |  / ";
-        pantalla.PixelAt(x,8).character="   __________/ / ";
-        pantalla.PixelAt(x,9).character="-=:___________/ ";
-
+        Screen pantalla = Screen::Create(Dimension::Full());
+        Render(pantalla, dibujo);
         pantalla.Print();
-        cout<<pantalla.ResetPosition();
+        cout << pantalla.ResetPosition();
+        this_thread::sleep_for(chrono::milliseconds(100));
     }
-    
+
     return 0;
 }

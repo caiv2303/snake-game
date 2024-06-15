@@ -1,30 +1,32 @@
-#include <iostream>
-#include <ftxui/screen/screen.hpp>
+#include<iostream>
+#include<ftxui/screen/screen.hpp>
 #include <ftxui/dom/elements.hpp>
 #include <thread>
+#include <chrono>
 #include <string>
 #include <fstream>
-#include <Dibujo.hpp>
+#include "Dibujo.hpp"
 
 using namespace std;
 using namespace ftxui;
 
-int main (int argc, char const *argv[])
+int main(int argc, char const *argv[])
 {
     Dibujo snake("./assets/images/snake.txt");
+    int fotograma = 0;
 
-    int fotograma=0;
-    while(true)
+    while (true)
     {
-        this_thread::sleep_for(0.1s);
+        this_thread::sleep_for(chrono::milliseconds(100));
         fotograma++;
-        Element personaje = spinner (21,fotograma)| bold | color(Color::Purple) | bgcolor(Color::White);
+        Element personaje = spinner(21, fotograma) | bold | color(Color::Purple) | bgcolor(Color::White);
         Element dibujo = hbox({personaje, snake.GetElement()});
-        Screen pantalla= Screen::Create(Dimension::Full());
-        Render(pantalla,dibujo);
+        Screen pantalla = Screen::Create(Dimension::Full());
+        Render(pantalla, dibujo);
         pantalla.Print();
-        cout<<pantalla.ResetPosition();
+        cout << pantalla.ResetPosition();
     }
-    
-    return EXIT_SUCCESS;
+
+return EXIT_SUCCESS;
+
 }
