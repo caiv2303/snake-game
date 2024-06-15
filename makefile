@@ -16,3 +16,4 @@ runPantalla : $(output)/pantalla
 
 $(output)/pantalla : $(source)/pantalla.cpp
 	g++ -o $@ $< $(flags)
+	
