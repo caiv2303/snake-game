@@ -1,17 +1,24 @@
 output = bin
 source = src
-include = -Iinclude
+include_dir = include
+assets_dir = assets
 dependencias = -lftxui-screen -lftxui-dom -lftxui-component
-flags = -std=c++2a $(dependencias) $(include)
+flags = -std=c++2a $(dependencias) -I$(include_dir)
 
-run : $(output)/snake
+all: $(output)/snake
+
+run_snake: $(output)/snake
 	./$<
 
-$(output)/snake : $(source)/main.cpp $(source)/Dibujo.hpp
-	g++ -o $@ $< $(flags)
+$(output)/snake: $(source)/main.cpp $(source)/Dibujo.hpp | $(output)
+	g++ -o $@ $(source)/main.cpp $(flags)
 
-runPantalla : $(output)/pantalla
-	./$<
+$(output):
+	mkdir -p $(output)
 
-$(output)/pantalla : $(source)/pantalla.cpp $(source)/Dibujo.hpp
-	g++ -o $@ $< $(flags)
+$(source)/Dibujo.hpp:
+
+clean:
+	rm -rf $(output)/*
+
+.PHONY: all run_snake clean
