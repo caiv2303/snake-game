@@ -1,4 +1,6 @@
-Snake::Snake() : m_body(std::list<sf::Sprite>(5)) // Cambiado a 5 piezas
+#include "Snake.hpp"
+
+Snake::Snake() : m_body(std::list<sf::Sprite>(4))
 {
     m_head = --m_body.end();
     m_tail = m_body.begin();
@@ -10,12 +12,12 @@ Snake::~Snake()
 
 void Snake::Init(const sf::Texture &texture)
 {
-    float x = 10.f; // Posición inicial diferente
+    float x = 16.f;
     for (auto &piece : m_body)
     {
         piece.setTexture(texture);
-        piece.setPosition({x, 10.f}); // Cambiada posición inicial en Y
-        x += 10.f; // Incremento diferente en X
+        piece.setPosition({x, 16.f});
+        x += 16.f;
     }
 }
 
@@ -40,22 +42,29 @@ void Snake::Grow(const sf::Vector2f &direction)
 {
     sf::Sprite newPiece;
     newPiece.setTexture(*(m_body.begin()->getTexture()));
-    newPiece.setPosition(m_head->getPosition() + sf::Vector2f(16.f, 0.f)); // Incremento constante
+    newPiece.setPosition(m_head->getPosition() + direction);
 
     m_head = m_body.insert(++m_head, newPiece);
 }
 
 bool Snake::IsSelfIntersecting() const
 {
+    bool flag = false;
+
     for (auto piece = m_body.begin(); piece != m_body.end(); ++piece)
     {
-        if (m_head != piece && IsOn(*piece)) // Comprobación menos eficiente
+        if (m_head != piece)
         {
-            return true;
+            flag = IsOn(*piece);
+
+            if (flag)
+            {
+                break;
+            }
         }
     }
 
-    return false;
+    return flag;
 }
 
 void Snake::draw(sf::RenderTarget &target, sf::RenderStates states) const

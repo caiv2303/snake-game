@@ -1,24 +1,31 @@
-output = bin
-source = src
-include_dir = include
-assets_dir = assets
-dependencias = -lftxui-screen -lftxui-dom -lftxui-component
-flags = -std=c++2a $(dependencias) -I$(include_dir)
+CXX		  := g++
+CXX_FLAGS := -Wall -Wextra -Wno-unused-parameter -std=c++17 -ggdb
 
-all: $(output)/snake
+BIN		:= bin
+SRC		:= src
+INCLUDE	:= include
+LIB		:= lib
 
-run_snake: $(output)/snake
-	./$<
+LIBRARIES	:= -lsfml-graphics -lsfml-window -lsfml-system
+EXECUTABLE	:= main
 
-$(output)/snake: $(source)/main.cpp $(source)/Dibujo.hpp | $(output)
-	g++ -o $@ $(source)/main.cpp $(flags)
+MKDIR_P = mkdir -p
 
-$(output):
-	mkdir -p $(output)
+.PHONY: directories
 
-$(source)/Dibujo.hpp:
+all: directories $(BIN)/$(EXECUTABLE)
+
+directories: ${BIN}
+
+${BIN}:
+	${MKDIR_P} ${BIN}
+
+run: clean all
+	clear
+	./$(BIN)/$(EXECUTABLE)
+
+$(BIN)/$(EXECUTABLE): $(SRC)/*.cpp
+	$(CXX) $(CXX_FLAGS) -I$(INCLUDE) -L$(LIB) $^ -o $@ $(LIBRARIES)
 
 clean:
-	rm -rf $(output)/*
-
-.PHONY: all run_snake clean
+	-rm $(BIN)/*
