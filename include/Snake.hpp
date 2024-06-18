@@ -1,7 +1,10 @@
 #pragma once
 
-#include <list>
-#include <SFML/Graphics.hpp>
+#include <SFML/Graphics/Texture.hpp>
+#include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Graphics/Drawable.hpp>
+#include <SFML/Graphics/RenderTarget.hpp>
+#include <SFML/Graphics/RenderStates.hpp>
 
 class snake: public sf::Drawable
 {

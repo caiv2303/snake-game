@@ -23,6 +23,6 @@ namespace Engine
 
     private:
         std::map<int, std::unique_ptr<sf::Texture>> m_textures;
-        std::map<int, std::unique_ptr<sf::Font>> m_fotns;
+        std::map<int, std::unique_ptr<sf::Font>> m_fonts;
     };
 }
