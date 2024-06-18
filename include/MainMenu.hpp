@@ -20,7 +20,7 @@ class MainMenu : public Engine::State
 public:
 
     MainMenu(std::shared_ptr<Context> &context);
-    MainMenu();
+    ~MainMenu();
     void Init() override;
     void ProcessInput() override;
     void Update(const sf::Time& deltaTime) override;
