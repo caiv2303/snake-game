@@ -15,10 +15,10 @@ public:
 
     void Init() override;
     void ProcessInput() override;
-    void Update(const sf::Tiem& deltaTime) override;
+    void Update(const sf::Time& deltaTime) override;
     void Draw() override;
 
 private:
     std::shared_ptr<Context> m_context;
-    std::Text m_pauseTitle;        
+    sf::Text m_pauseTitle;        
 };

@@ -6,6 +6,8 @@ class GameOver : public Engine::State
 {
 public:
     GameOver(std::shared_ptr<Context> &context);
+    ~GameOver();
+    
     void Init() override;
     void ProcessInput() override;
     void Update(const sf::Time& deltaTime) override;
@@ -15,6 +17,9 @@ private:
     sf::Text m_gameOverTitle;
     sf::Text m_retryButton;
     sf::Text m_exitButton;
-    bool m_isRettryButtonSelected, m_isRetryButtonPressed;
-    bool m_isExitButtonSelected, m_isExitButtonPressed;
+    bool m_isRetryButtonSelected;
+    bool m_isRetryButtonPressed;
+
+    bool m_isExitButtonSelected;
+    bool m_isExitButtonPressed;
 };

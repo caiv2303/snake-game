@@ -1,6 +1,6 @@
-#pragma
+#pragma once
 #include <memory>
-#include<SFML/praphics/text.hpp>
+#include<SFML/Graphics/text.hpp>
 #include "State.hpp"
 #include "Game.hpp"
 

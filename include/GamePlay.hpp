@@ -13,8 +13,8 @@
 class GamePlay: public Engine::State
 {
 public:
-    GamePlay(std::shared_ptr<Conext> &context);
-    ~Gameplay();
+    GamePlay(std::shared_ptr<Context> &context);
+    ~GamePlay();
 
     void Init() override;
     void ProcessInput() override;
