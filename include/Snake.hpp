@@ -11,7 +11,7 @@
 class Snake: public sf::Drawable
 {
 public:
-    snake();
+    Snake();
     ~Snake();
 
     void Init(const sf::Texture& texture);
