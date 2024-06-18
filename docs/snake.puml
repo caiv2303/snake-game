@@ -1,43 +1,43 @@
 @startuml snake
 
-class Juego {
-    -serpiente: Serpiente
-    -tablero: Tablero
-    +iniciarJuego(): void
-    +terminarJuego(): void
+class Game {
+    -snake: Snake
+    -board: Board
+    +startGame(): void
+    +endGame(): void
 }
 
-class Serpiente {
-    -cuerpo: Lista<Punto>
-    -direccion: Direccion
-    +mover(): void
-    +cambiarDireccion(nuevaDireccion: Direccion): void
+class Snake {
+    -body: List<Point>
+    -direction: Direction
+    +move(): void
+    +changeDirection(newDirection: Direction): void
 }
 
-class Tablero {
-    -ancho: int
-    -alto: int
-    +dibujar(): void
+class Board {
+    -width: int
+    -height: int
+    +draw(): void
 }
 
-class Punto {
+class Point {
     -x: int
     -y: int
 }
 
-enum Direccion {
-    ARRIBA
-    ABAJO
-    IZQUIERDA
-    DERECHA
+enum Direction {
+    UP
+    DOWN
+    LEFT
+    RIGHT
 }
 
-Juego --> Serpiente
-Juego --> Tablero
-Serpiente *-- Punto
-Tablero *-- Punto
+Game --> Snake
+Game --> Board
+Snake *-- Point
+Board *-- Point
 
-Serpiente "1" *-- "0..*" Punto
-Tablero "1" *-- "0..*" Punto
+Snake "1" *-- "0..*" Point
+Board "1" *-- "0..*" Point
 
 @enduml
