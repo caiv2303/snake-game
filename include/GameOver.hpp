@@ -1,7 +1,12 @@
 #pragma once
+
 #include <memory>
-#include <SFML/Graphics.hpp>
+
+#include <SFML/Graphics/Text.hpp>
+
 #include "State.hpp"
+#include "Game.hpp"
+
 class GameOver : public Engine::State
 {
 public:
@@ -17,6 +22,7 @@ private:
     sf::Text m_gameOverTitle;
     sf::Text m_retryButton;
     sf::Text m_exitButton;
+    
     bool m_isRetryButtonSelected;
     bool m_isRetryButtonPressed;
 

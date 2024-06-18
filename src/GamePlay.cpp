@@ -1,7 +1,9 @@
 #include "GamePlay.hpp"
 #include "GameOver.hpp"
 #include "PauseGame.hpp"
+
 #include <SFML/Window/Event.hpp>
+
 #include <stdlib.h>
 #include <time.h>
 
